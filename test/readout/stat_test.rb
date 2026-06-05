@@ -34,6 +34,12 @@ module Readout
       assert_equal :currency, stat.unit
     end
 
+    def test_exposes_its_timeframe
+      stat = Stat.new(key: :revenue, timeframe: "This month")
+
+      assert_equal "This month", stat.timeframe
+    end
+
     def test_reads_its_value_through_its_source
       source = ->(_inputs) { Result.new(value: 0.42, shape: :scalar, exact: true) }
       stat = Stat.new(key: :sales_conversion, source: source)

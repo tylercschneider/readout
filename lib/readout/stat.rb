@@ -2,12 +2,13 @@
 
 module Readout
   class Stat
-    attr_reader :key, :title, :definition
+    attr_reader :key, :title, :definition, :calculation
 
-    def initialize(key:, title: nil, definition: nil, source: nil)
+    def initialize(key:, title: nil, definition: nil, calculation: nil, source: nil)
       @key = key
       @title = title
       @definition = definition
+      @calculation = calculation
       @source = source
     end
 

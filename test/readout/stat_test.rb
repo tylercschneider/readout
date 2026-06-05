@@ -22,6 +22,12 @@ module Readout
       assert_equal "Share of leads that became deals.", stat.definition
     end
 
+    def test_exposes_its_calculation
+      stat = Stat.new(key: :sales_conversion, calculation: "deals ÷ qualified leads, within the period")
+
+      assert_equal "deals ÷ qualified leads, within the period", stat.calculation
+    end
+
     def test_reads_its_value_through_its_source
       source = ->(_inputs) { Result.new(value: 0.42, shape: :scalar, exact: true) }
       stat = Stat.new(key: :sales_conversion, source: source)

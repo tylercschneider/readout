@@ -22,7 +22,20 @@ gem "readout"
 
 ## Status
 
-Early development — building the Stat contract and the Source port.
+The core contract works — a `Stat` reads through its `Source` and returns a
+normalized `Result`:
+
+```ruby
+source = ->(inputs) { Readout::Result.new(value: 0.42, shape: :scalar, exact: true) }
+stat   = Readout::Stat.new(key: :sales_conversion, title: "Sales Conversion", source: source)
+
+stat.read(qualified: 100, won: 42).value   # => 0.42
+```
+
+`Result` carries `value, shape, as_of, exact`. Swap the `Source` (a tally-backed
+one, a live query, a fixture) without touching the Stat or the display.
+
+Next: declared inputs (required/optional) + validation, then unit/timeframe metadata.
 
 ## License
 

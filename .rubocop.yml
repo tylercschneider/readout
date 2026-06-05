@@ -15,3 +15,8 @@ Layout/LineLength:
 # Match the team standard (rubocop-rails-omakase): no mandatory class/module docs.
 Style/Documentation:
   Enabled: false
+
+# Keyword args are self-documenting; a value object with many named attributes
+# isn't the readability problem this cop targets.
+Metrics/ParameterLists:
+  CountKeywordArgs: false

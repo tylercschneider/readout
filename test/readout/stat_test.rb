@@ -15,5 +15,12 @@ module Readout
 
       assert_equal "Sales Conversion", stat.title
     end
+
+    def test_reads_its_value_through_its_source
+      source = ->(_inputs) { Result.new(value: 0.42, shape: :scalar, exact: true) }
+      stat = Stat.new(key: :sales_conversion, source: source)
+
+      assert_in_delta 0.42, stat.read({}).value
+    end
   end
 end

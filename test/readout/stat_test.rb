@@ -9,5 +9,11 @@ module Readout
 
       assert_equal :sales_conversion, stat.key
     end
+
+    def test_exposes_its_title
+      stat = Stat.new(key: :sales_conversion, title: "Sales Conversion")
+
+      assert_equal "Sales Conversion", stat.title
+    end
   end
 end
